@@ -5,6 +5,16 @@ public class LocationStats {
     private String state;
     private String country;
     private int latestTotalCases;
+
+    public float getMortality() {
+        return diffFromPrevDay;
+    }
+
+    public void setMortality(int diffFromPrevDay) {
+        this.diffFromPrevDay = diffFromPrevDay;
+    }
+
+    private float diffFromPrevDay;
 //
 //    public LocationStats(String state, String coutry, String latestTotalCases) {
 //        this.state = state;
@@ -29,10 +39,12 @@ public class LocationStats {
     }
 
     public int getLatestTotalCases() {
-        return latestTotalCases;
+
+         return latestTotalCases;
     }
 
     public void setLatestTotalCases(int latestTotalCases) {
+
         this.latestTotalCases = latestTotalCases;
     }
 

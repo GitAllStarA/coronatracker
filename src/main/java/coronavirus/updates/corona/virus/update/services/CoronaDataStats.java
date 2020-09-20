@@ -26,6 +26,11 @@ public class CoronaDataStats {
 
     private List<LocationStats> allStats = new ArrayList<>();
 
+    public List<LocationStats> getAllStats() {
+        return allStats;
+    }
+
+
     @PostConstruct
     @Scheduled(cron = "* * 1 * * *") // executing below method once a day
     public void coronaStatsFetch () throws IOException, InterruptedException {
@@ -47,9 +52,13 @@ public class CoronaDataStats {
 
         for (CSVRecord record : records) {
           LocationStats locationStats = new LocationStats();
-          locationStats.setState(record.get("Province/State"));
-          locationStats.setCountry(record.get("Country/Region"));
-          locationStats.setLatestTotalCases(Integer.parseInt(record.get(record.size()-1)));
+          locationStats.setState(record.get("Province_State"));
+          locationStats.setCountry(record.get("Country_Region"));
+          int Confirmed =  Integer.parseInt(record.get("Confirmed"));
+
+          locationStats.setLatestTotalCases(Confirmed);
+
+
 
             newStats.add(locationStats);
         }
